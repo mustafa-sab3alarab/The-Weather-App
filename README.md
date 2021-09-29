@@ -1,2 +1,1 @@
-"#New Project"
-"#AD-340 App"
+"AD-340 App"
