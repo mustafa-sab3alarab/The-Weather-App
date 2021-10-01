@@ -38,14 +38,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val forecastList = findViewById<RecyclerView>(R.id.forecastList)
-        forecastList.layoutManager = LinearLayoutManager(this)
-        //val recyclerViewAdapter =
-        //forecastList.adapter = recyclerViewAdapter
-
-        viewModelForecastRepository.weeklyForecast.observe(this, Observer<List<DailyForecast>> {
+        viewModelForecastRepository.weeklyForecast.observe(this) {
             // update our list adapter
-            Toast.makeText(this, "Loaded Items", Toast.LENGTH_SHORT).show()
-        })
+            val forecastList = findViewById<RecyclerView>(R.id.forecastList)
+            forecastList.layoutManager = LinearLayoutManager(this)
+            val recyclerViewAdapter = DailyForecastAdapter(it)
+            forecastList.adapter = recyclerViewAdapter
+        }
     }
 }
