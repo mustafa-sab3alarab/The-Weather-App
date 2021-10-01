@@ -1,4 +1,1 @@
-"AD-340 App"
-
-
-Weather App
+The Weather App
