@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,10 +37,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val weeklyForecastRepository = Observer<List<DailyForecast>> {
+
+        val forecastList = findViewById<RecyclerView>(R.id.forecastList)
+        forecastList.layoutManager = LinearLayoutManager(this)
+        //val recyclerViewAdapter =
+        //forecastList.adapter = recyclerViewAdapter
+
+        viewModelForecastRepository.weeklyForecast.observe(this, Observer<List<DailyForecast>> {
             // update our list adapter
             Toast.makeText(this, "Loaded Items", Toast.LENGTH_SHORT).show()
-        }
-        viewModelForecastRepository.weeklyForecast.observe(this, weeklyForecastRepository)
+        })
     }
 }
