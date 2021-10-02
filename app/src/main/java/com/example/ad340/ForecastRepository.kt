@@ -16,9 +16,9 @@ class ForecastRepository : ViewModel(){
 
     // Load Data to live data
     fun loadForecast(zipcode: String) {
-        val randomValues = List(7) { Random.nextFloat().rem(100) * 100 }
+        val randomValues = List(15) { Random.nextFloat().rem(100) * 100 }
         val forecastItems = randomValues.map { randomValue ->
-            DailyForecast(R.drawable.ic_cloud,randomValue, "Partly Cloudy")
+            DailyForecast(R.drawable.ic_cloud,String.format("%.1f", randomValue).toFloat(), "Partly Cloudy")
         }
         _weeklyForecast.value = forecastItems
     }

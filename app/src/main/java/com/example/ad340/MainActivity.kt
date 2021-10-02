@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     private var viewModelForecastRepository = ForecastRepository()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         // Block Screen Shoot
         //window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE)
-
 
         viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
 
@@ -38,12 +38,19 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        val forecastList = findViewById<RecyclerView>(R.id.forecastList)
         viewModelForecastRepository.weeklyForecast.observe(this) {
             // update our list adapter
-            val forecastList = findViewById<RecyclerView>(R.id.forecastList)
             forecastList.layoutManager = LinearLayoutManager(this)
             val recyclerViewAdapter = DailyForecastAdapter(it)
             forecastList.adapter = recyclerViewAdapter
+            recyclerViewAdapter.onItemClickListener = this
         }
+
+
+    }
+
+    override fun onItemClick(dailyForecast: DailyForecast) {
+        Toast.makeText(applicationContext, dailyForecast.temp.toString(), Toast.LENGTH_SHORT).show()
     }
 }

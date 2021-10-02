@@ -3,12 +3,15 @@ package com.example.ad340
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DailyForecastAdapter(val list: List<DailyForecast>) :
+class DailyForecastAdapter(private val list: List<DailyForecast>) :
     RecyclerView.Adapter<DailyForecastAdapter.ViewHolder>() {
+
+    var onItemClickListener: OnItemClickListener? = null
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -20,6 +23,9 @@ class DailyForecastAdapter(val list: List<DailyForecast>) :
             image.setImageResource(dailyForecast.image)
             textDescription.text = dailyForecast.description
             textTemperature.text = dailyForecast.temp.toString()
+            itemView.setOnClickListener {
+                onItemClickListener?.onItemClick(dailyForecast)
+            }
         }
     }
 
@@ -30,8 +36,7 @@ class DailyForecastAdapter(val list: List<DailyForecast>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val forecast = list[position]
-        holder.bind(forecast)
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int {
