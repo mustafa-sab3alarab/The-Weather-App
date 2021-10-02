@@ -51,6 +51,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(dailyForecast: DailyForecast) {
-        Toast.makeText(applicationContext, dailyForecast.temp.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, getString(R.string.forecast_clicked_format,dailyForecast.temp,dailyForecast.description), Toast.LENGTH_SHORT).show()
     }
 }

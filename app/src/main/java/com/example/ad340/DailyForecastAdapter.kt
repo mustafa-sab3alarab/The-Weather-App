@@ -22,7 +22,7 @@ class DailyForecastAdapter(private val list: List<DailyForecast>) :
         fun bind(dailyForecast: DailyForecast) {
             image.setImageResource(dailyForecast.image)
             textDescription.text = dailyForecast.description
-            textTemperature.text = dailyForecast.temp.toString()
+            textTemperature.text = "${String.format("%.2f",dailyForecast.temp)} °F"
             itemView.setOnClickListener {
                 onItemClickListener?.onItemClick(dailyForecast)
             }

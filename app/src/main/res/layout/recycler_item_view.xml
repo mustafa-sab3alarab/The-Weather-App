@@ -28,7 +28,7 @@
         android:id="@+id/tv_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
+        android:layout_marginStart="8dp"
         android:text="32.58"
         android:textColor="#ffffff"
         android:textSize="17sp"
