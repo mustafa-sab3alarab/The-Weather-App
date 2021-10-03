@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".details.ForecastDetailsActivity">
 
+    <TextView
+        android:id="@+id/temp_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="74.1°" />
+
+    <TextView
+        android:id="@+id/temp_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/temp_details"
+        app:layout_constraintTop_toBottomOf="@+id/temp_details"
+        tools:text="That's the sweet spot!" />
 </androidx.constraintlayout.widget.ConstraintLayout>

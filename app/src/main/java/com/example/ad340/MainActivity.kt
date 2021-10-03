@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     // Convert Fahrenheit (°F) to Celsius (°C)
     // (32°F − 32) × 5/9 = 0°C
+    companion object {
+        const val TEMP_TEXT: String = "TEMP_TEXT"
+        const val TEMP_DESCRIPTION: String = "TEMP_DESCRIPTION"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +58,14 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(dailyForecast: DailyForecast) {
+        showForecastDetails(dailyForecast)
+    }
+
+
+    private fun showForecastDetails(dailyForecast: DailyForecast){
         Intent(this, ForecastDetailsActivity::class.java).also {
+            it.putExtra(TEMP_TEXT, dailyForecast.temp.toString())
+            it.putExtra(TEMP_DESCRIPTION, dailyForecast.description)
             startActivity(it)
         }
     }
