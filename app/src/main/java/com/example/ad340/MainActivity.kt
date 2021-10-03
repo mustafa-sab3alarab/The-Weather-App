@@ -1,5 +1,6 @@
 package com.example.ad340
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ad340.details.ForecastDetailsActivity
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
@@ -52,14 +54,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(dailyForecast: DailyForecast) {
-        Toast.makeText(
-            applicationContext,
-            getString(
-                R.string.forecast_clicked_format,
-                dailyForecast.temp,
-                dailyForecast.description
-            ),
-            Toast.LENGTH_SHORT
-        ).show()
+        Intent(this, ForecastDetailsActivity::class.java).also {
+            startActivity(it)
+        }
     }
 }

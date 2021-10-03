@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AD340">
         <activity
             android:name=".details.ForecastDetailsActivity"
-            android:exported="true" />
+            android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
