@@ -1,24 +1,25 @@
 package com.example.ad340
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
-import android.widget.*
-import androidx.lifecycle.Observer
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     private var viewModelForecastRepository = ForecastRepository()
 
+    // Convert Fahrenheit (°F) to Celsius (°C)
+    // (32°F − 32) × 5/9 = 0°C
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // Block Screen Shoot
         //window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE)
@@ -51,6 +52,14 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(dailyForecast: DailyForecast) {
-        Toast.makeText(applicationContext, getString(R.string.forecast_clicked_format,dailyForecast.temp,dailyForecast.description), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            applicationContext,
+            getString(
+                R.string.forecast_clicked_format,
+                dailyForecast.temp,
+                dailyForecast.description
+            ),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

@@ -39,15 +39,13 @@ class ForecastRepository : ViewModel() {
 
     private fun getImage(temp: Float): Int {
         return when(temp){
-            in Float.MIN_VALUE.rangeTo(0f) -> 0
             in 0f.rangeTo(32f) -> R.drawable.ic_cold
             in 32f.rangeTo(55f) -> R.drawable.ic_cold
             in 55f.rangeTo(65f) -> R.drawable.ic_cold
             in 65f.rangeTo(80f) -> R.drawable.ic_sun_copy
             in 80f.rangeTo(90f) ->  R.drawable.ic_sun_copy
             in 90f.rangeTo(100f) -> R.drawable.ic_sun_copy
-            in 100f.rangeTo(Float.MAX_VALUE) -> 0
-            else -> 0
+            else -> -1
         }
     }
 
