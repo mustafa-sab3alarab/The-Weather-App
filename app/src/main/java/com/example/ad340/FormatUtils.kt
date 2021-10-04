@@ -25,7 +25,7 @@ fun showTempDisplaySettingDialog(context: Context,tempDisplaySettingManger: Temp
         .setPositiveButton("F°") { dialogInterface, i ->
             tempDisplaySettingManger.updateSetting(TempDisplaySetting.Fahrenheit)
         }
-        .setNeutralButton("C°") { dialogInterface, i ->
+        .setNegativeButton("C°") { dialogInterface, i ->
             tempDisplaySettingManger.updateSetting(TempDisplaySetting.Celsius)
 
         }.show()
