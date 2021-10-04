@@ -3,12 +3,12 @@ package com.example.ad340
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DailyForecastAdapter(private val list: List<DailyForecast>) :
+class DailyForecastAdapter(private val list: List<DailyForecast>,
+private val tempDisplaySettingManger: TempDisplaySettingManger) :
     RecyclerView.Adapter<DailyForecastAdapter.ViewHolder>() {
 
     var onItemClickListener: OnItemClickListener? = null
@@ -22,7 +22,7 @@ class DailyForecastAdapter(private val list: List<DailyForecast>) :
         fun bind(dailyForecast: DailyForecast) {
             image.setImageResource(dailyForecast.image)
             textDescription.text = dailyForecast.description
-            textTemperature.text = "${String.format("%.2f",dailyForecast.temp)} °F"
+            textTemperature.text = formatTempForDisplay(dailyForecast.temp,tempDisplaySettingManger.getTempDisplaySettings())
             itemView.setOnClickListener {
                 onItemClickListener?.onItemClick(dailyForecast)
             }
@@ -30,9 +30,8 @@ class DailyForecastAdapter(private val list: List<DailyForecast>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.recycler_item_view, parent, false)
-        )
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_item_view, parent, false)
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
