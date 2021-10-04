@@ -13,6 +13,8 @@
         <entry key="..\:/Code/Android/AD-340/app/src/main/res/drawable/ic_wind.xml" value="0.3223684210526316" />
         <entry key="..\:/Code/Android/AD-340/app/src/main/res/layout/activity_forecast_details.xml" value="0.33" />
         <entry key="..\:/Code/Android/AD-340/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Code/Android/AD-340/app/src/main/res/layout/fragment_current_forecast.xml" value="0.287962962962963" />
+        <entry key="..\:/Code/Android/AD-340/app/src/main/res/layout/fragment_location_entry.xml" value="0.33" />
         <entry key="..\:/Code/Android/AD-340/app/src/main/res/layout/recycler_item_view.xml" value="0.67" />
         <entry key="..\:/Code/Android/AD-340/app/src/main/res/layout/recylcer_item_view.xml" value="0.3087719298245614" />
         <entry key="..\:/Code/Android/AD-340/app/src/main/res/menu/settings_menu.xml" value="0.25" />

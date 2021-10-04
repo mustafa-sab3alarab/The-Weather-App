@@ -7,78 +7,16 @@
     android:background="#32333D"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:tint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_location"
-        tools:ignore="UseAppTint" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/enter_your_zipcode"
-        android:textColor="@color/white"
-        android:textSize="@dimen/title_text_height"
-        app:layout_constraintBottom_toBottomOf="@+id/icon"
-        app:layout_constraintStart_toEndOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="@+id/icon" />
-
-    <LinearLayout
-        android:layout_marginTop="16dp"
-        android:id="@+id/linear"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/icon"
-        app:layout_constraintTop_toBottomOf="@+id/title">
-
-        <EditText
-            android:layout_weight="1"
-            android:id="@+id/zipcodeEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_zipcode"
-            android:inputType="number"
-            android:maxLength="5"
-            android:maxLines="1"
-            android:minHeight="48dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-        <Button
-            android:layout_marginStart="8dp"
-            android:id="@+id/enterButton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFEB3B"
-            android:text="@string/submit_zipcode"
-            android:textColor="#32333D"
-            android:theme="@style/theme_btn" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/forecastList"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight=".3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear"
-        tools:listitem="@layout/recycler_item_view" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_location_entry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
