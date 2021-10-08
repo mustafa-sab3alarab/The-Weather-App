@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AD340">
         <activity
-            android:name=".details.ForecastDetailsActivity"
+            android:name=".details.ForecastDetailsFragment"
             android:exported="true"/>
         <activity
             android:name=".MainActivity"

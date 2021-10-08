@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".details.ForecastDetailsActivity">
+    android:background="#32333D"
+    tools:context=".details.ForecastDetailsFragment">
 
     <TextView
         android:id="@+id/temp_details"
@@ -15,6 +16,7 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -29,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="@color/white"
         android:layout_marginEnd="16dp"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"

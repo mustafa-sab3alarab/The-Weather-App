@@ -1,29 +1,18 @@
 package com.example.ad340
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.ad340.details.ForecastDetailsActivity
-import com.example.ad340.forecast.CurrentForecastFragment
-import com.example.ad340.location.LocationEntryFragment
 
-class MainActivity : AppCompatActivity(), AppNavigator {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
 
-    companion object {
-        const val TEMP_TEXT: String = "TEMP_TEXT"
-        const val TEMP_DESCRIPTION: String = "TEMP_DESCRIPTION"
-    }
+//    companion object {
+//        const val TEMP_TEXT: String = "TEMP_TEXT"
+//        const val TEMP_DESCRIPTION: String = "TEMP_DESCRIPTION"
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +20,10 @@ class MainActivity : AppCompatActivity(), AppNavigator {
         tempDisplaySettingManger = TempDisplaySettingManger(this)
 
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_container,LocationEntryFragment())
-            .commit()
+//        supportFragmentManager
+//            .beginTransaction()
+//            .add(R.id.fragment_container,LocationEntryFragment())
+//            .commit()
 
 
     }
@@ -53,17 +42,17 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
 
 
-    override fun navigateCurrentForecast(zipcode: String) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container,CurrentForecastFragment.newInstance(zipcode))
-            .commit()
-    }
-
-    override fun navigateToLocationEntry() {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container,LocationEntryFragment())
-            .commit()
-    }
+//    override fun navigateCurrentForecast(zipcode: String) {
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.fragment_container,CurrentForecastFragment.newInstance(zipcode))
+//            .commit()
+//    }
+//
+//    override fun navigateToLocationEntry() {
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.fragment_container,LocationEntryFragment())
+//            .commit()
+//    }
 }
