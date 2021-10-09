@@ -9,9 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AD340">
-        <activity
-            android:name=".details.ForecastDetailsFragment"
-            android:exported="true"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

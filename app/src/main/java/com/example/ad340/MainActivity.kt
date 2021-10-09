@@ -4,27 +4,33 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
-
-//    companion object {
-//        const val TEMP_TEXT: String = "TEMP_TEXT"
-//        const val TEMP_DESCRIPTION: String = "TEMP_DESCRIPTION"
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         tempDisplaySettingManger = TempDisplaySettingManger(this)
 
+        val toolbar : Toolbar = findViewById(R.id.toolbar_main)
+        val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
-//        supportFragmentManager
-//            .beginTransaction()
-//            .add(R.id.fragment_container,LocationEntryFragment())
-//            .commit()
+        setSupportActionBar(toolbar)
 
+
+        val navController = findNavController(R.id.fragmentContainerView)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        toolbar.setupWithNavController(navController,appBarConfiguration)
+        bottomNavigationView.setupWithNavController(navController)
 
     }
 
@@ -39,20 +45,4 @@ class MainActivity : AppCompatActivity(){
         }
         return true
     }
-
-
-
-//    override fun navigateCurrentForecast(zipcode: String) {
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.fragment_container,CurrentForecastFragment.newInstance(zipcode))
-//            .commit()
-//    }
-//
-//    override fun navigateToLocationEntry() {
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.fragment_container,LocationEntryFragment())
-//            .commit()
-//    }
 }

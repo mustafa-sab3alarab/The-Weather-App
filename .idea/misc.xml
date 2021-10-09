@@ -25,7 +25,10 @@
         <entry key="..\:/Code/Android/The-Weather-App/app/src/main/res/layout/fragment_current_forecast.xml" value="0.36666666666666664" />
         <entry key="..\:/Code/Android/The-Weather-App/app/src/main/res/layout/fragment_forecast_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Code/Android/The-Weather-App/app/src/main/res/layout/fragment_location_entry.xml" value="0.36666666666666664" />
+        <entry key="..\:/Code/Android/The-Weather-App/app/src/main/res/layout/fragment_weekly_forecast.xml" value="0.37864583333333335" />
         <entry key="..\:/Code/Android/The-Weather-App/app/src/main/res/layout/recycler_item_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Code/Android/The-Weather-App/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Code/Android/The-Weather-App/app/src/main/res/menu/settings_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/locationEntryFragment">
+    app:startDestination="@id/currentForecastFragment">
 
     <fragment
         android:id="@+id/forecastDetailsActivity"
         android:name="com.example.ad340.details.ForecastDetailsFragment"
-        android:label="activity_forecast_details"
+        android:label="Forecast Details"
         tools:layout="@layout/fragment_forecast_details" >
         <argument
             android:name="temp"
@@ -16,15 +16,22 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <action
+            android:id="@+id/action_forecastDetailsActivity_to_currentForecastFragment"
+            app:destination="@id/currentForecastFragment"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/currentForecastFragment"
         android:name="com.example.ad340.forecast.CurrentForecastFragment"
-        android:label="fragment_current_forecast"
+        android:label="Forecast"
         tools:layout="@layout/fragment_current_forecast" >
         <action
             android:id="@+id/action_currentForecastFragment_to_locationEntryFragment"
-            app:destination="@id/locationEntryFragment" />
+            app:destination="@id/locationEntryFragment"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_currentForecastFragment_to_forecastDetailsActivity"
             app:destination="@id/forecastDetailsActivity"
@@ -36,11 +43,25 @@
     <fragment
         android:id="@+id/locationEntryFragment"
         android:name="com.example.ad340.location.LocationEntryFragment"
-        android:label="fragment_location_entry"
+        android:label="Location"
         tools:layout="@layout/fragment_location_entry" >
         <action
-            android:id="@+id/action_locationEntryFragment_to_currentForecastFragment"
-            app:destination="@id/currentForecastFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            android:id="@+id/action_locationEntryFragment_to_currentForecastFragment5"
+            app:destination="@id/currentForecastFragment" />
+        <action
+            android:id="@+id/action_locationEntryFragment_to_weeklyForecastFragment2"
+            app:destination="@id/weeklyForecastFragment2" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_weekly_forecast"
+        android:id="@+id/weeklyForecastFragment2"
+        android:name="com.example.ad340.forecast.WeeklyForecastFragment"
+        android:label="Weekly Forecast Fragment" >
+        <action
+            android:id="@+id/action_weeklyForecastFragment2_to_forecastDetailsActivity"
+            app:destination="@id/forecastDetailsActivity" />
+        <action
+            android:id="@+id/action_weeklyForecastFragment2_to_locationEntryFragment"
+            app:destination="@id/locationEntryFragment" />
     </fragment>
 </navigation>
