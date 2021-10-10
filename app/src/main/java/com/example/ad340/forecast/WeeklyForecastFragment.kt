@@ -67,8 +67,9 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
         val action =
             WeeklyForecastFragmentDirections.actionWeeklyForecastFragment2ToForecastDetailsActivity(
                 dailyForecast.temp.max,
-                dailyForecast.weather[0].description
-            )
+                dailyForecast.weather[0].description,
+                dailyForecast.date,
+                dailyForecast.weather[0].icon)
         findNavController().navigate(action)
     }
 

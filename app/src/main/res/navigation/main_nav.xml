@@ -21,6 +21,12 @@
             app:destination="@id/currentForecastFragment"
             app:exitAnim="@android:anim/slide_out_right"
             app:popExitAnim="@android:anim/slide_out_right" />
+          <argument
+            android:name="Date"
+            app:argType="long" />
+        <argument
+            android:name="image"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/currentForecastFragment"

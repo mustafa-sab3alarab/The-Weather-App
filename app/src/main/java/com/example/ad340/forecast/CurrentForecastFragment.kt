@@ -9,12 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import coil.load
 import com.example.ad340.*
-import com.example.ad340.api.DailyForecast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class CurrentForecastFragment : Fragment(), OnItemClickListener {
+class CurrentForecastFragment : Fragment(){
 
     private lateinit var viewModelForecastRepository : ForecastRepository
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
@@ -57,16 +55,6 @@ class CurrentForecastFragment : Fragment(), OnItemClickListener {
         return view
     }
 
-    override fun onItemClick(dailyForecast: DailyForecast) {
-//        showForecastDetails(dailyForecast)
-    }
-
-//
-//    private fun showForecastDetails(dailyForecast: DailyForecast) {
-//        val action = CurrentForecastFragmentDirections.actionCurrentForecastFragmentToForecastDetailsActivity(dailyForecast.temp.max,dailyForecast.weather[0].description)
-//        findNavController().navigate(action)
-//
-//    }
 
     companion object {
 
