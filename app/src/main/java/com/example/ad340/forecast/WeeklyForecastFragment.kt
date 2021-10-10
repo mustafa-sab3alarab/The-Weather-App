@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WeeklyForecastFragment : Fragment(), OnItemClickListener {
 
-    private var viewModelForecastRepository = ForecastRepository()
+    private lateinit var viewModelForecastRepository : ForecastRepository
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
     private lateinit var locationRepository: LocationRepository
 
@@ -34,7 +35,7 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
         val forecastList = view.findViewById<RecyclerView>(R.id.forecastWeeklyList)
         forecastList.layoutManager = LinearLayoutManager(requireContext())
 
-
+        viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
         viewModelForecastRepository.weeklyForecast.observe(viewLifecycleOwner) {
             // update our list adapter
             val recyclerViewAdapter = DailyForecastAdapter(it.daily, tempDisplaySettingManger)

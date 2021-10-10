@@ -27,6 +27,7 @@ class ForecastRepository : ViewModel() {
 
     // Load Data to live data
     fun loadWeeklyForecast(zipcode: String) {
+
         val call = createOpenWeatherMapService().currentWeather(zipcode,"imperial",BuildConfig.OPEN_WEATHER_MAP_API_KEY)
 
         call.enqueue(object:Callback<CurrentWeather>{

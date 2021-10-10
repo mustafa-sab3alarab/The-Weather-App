@@ -55,7 +55,7 @@
         tools:layout="@layout/fragment_weekly_forecast"
         android:id="@+id/weeklyForecastFragment2"
         android:name="com.example.ad340.forecast.WeeklyForecastFragment"
-        android:label="Weekly Forecast Fragment" >
+        android:label="Weekly Forecast" >
         <action
             android:id="@+id/action_weeklyForecastFragment2_to_forecastDetailsActivity"
             app:destination="@id/forecastDetailsActivity" />

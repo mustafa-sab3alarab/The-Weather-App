@@ -3,6 +3,7 @@ package com.example.ad340
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
 sealed class Location {
     data class Zipcode(val zipcode: String) : Location()

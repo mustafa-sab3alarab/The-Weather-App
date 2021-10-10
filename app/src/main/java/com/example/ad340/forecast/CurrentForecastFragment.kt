@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ad340.*
 import com.example.ad340.api.DailyForecast
@@ -13,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CurrentForecastFragment : Fragment(), OnItemClickListener {
 
-    private var viewModelForecastRepository = ForecastRepository()
+    private lateinit var viewModelForecastRepository : ForecastRepository
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
     private lateinit var locationRepository: LocationRepository
 
@@ -27,6 +28,7 @@ class CurrentForecastFragment : Fragment(), OnItemClickListener {
         val locationName = view.findViewById<TextView>(R.id.location_name)
         val tempText = view.findViewById<TextView>(R.id.temp_text)
 
+        viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
         viewModelForecastRepository.currentWeather.observe(viewLifecycleOwner) {
             locationName.text = it.name
             tempText.text = formatTempForDisplay(it.forecast.temp,tempDisplaySettingManger.getTempDisplaySettings())
