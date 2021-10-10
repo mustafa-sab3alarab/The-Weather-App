@@ -20,11 +20,7 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
     private lateinit var locationRepository: LocationRepository
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_weekly_forecast, container, false)
         tempDisplaySettingManger = TempDisplaySettingManger(requireContext())
