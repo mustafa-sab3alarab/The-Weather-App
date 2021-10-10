@@ -1,41 +1,38 @@
 package com.example.ad340
 
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.jar.Manifest
+import com.example.ad340.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
-
+    private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         requestPermission()
+
         tempDisplaySettingManger = TempDisplaySettingManger(this)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar_main)
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
-
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbarMain)
 
 
         val navController = findNavController(R.id.fragment_nav_host)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        toolbar.setupWithNavController(navController, appBarConfiguration)
-        bottomNavigationView.setupWithNavController(navController)
+        binding.toolbarMain.setupWithNavController(navController, appBarConfiguration)
+        binding.bottomNavigationView.setupWithNavController(navController)
 
     }
 
