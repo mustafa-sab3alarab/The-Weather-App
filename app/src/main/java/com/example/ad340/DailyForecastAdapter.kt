@@ -6,10 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.example.ad340.api.DailyForecast
+import java.text.SimpleDateFormat
+import java.util.*
 
-class DailyForecastAdapter(private val list: List<DailyForecast>,
-private val tempDisplaySettingManger: TempDisplaySettingManger) :
-    RecyclerView.Adapter<DailyForecastAdapter.ViewHolder>() {
+private val DATE_FORMAT = SimpleDateFormat("dd-MM-yyyy")
+
+class DailyForecastAdapter(private val list: List<DailyForecast>, private val tempDisplaySettingManger: TempDisplaySettingManger)
+
+    : RecyclerView.Adapter<DailyForecastAdapter.ViewHolder>() {
 
     var onItemClickListener: OnItemClickListener? = null
 
@@ -18,11 +24,14 @@ private val tempDisplaySettingManger: TempDisplaySettingManger) :
         private val image: ImageView = itemView.findViewById(R.id.iv_forecast)
         private val textDescription: TextView = itemView.findViewById(R.id.tv_description)
         private val textTemperature: TextView = itemView.findViewById(R.id.tv_temperature)
+        private val tempDate: TextView = itemView.findViewById(R.id.temp_date)
 
         fun bind(dailyForecast: DailyForecast) {
-            image.setImageResource(dailyForecast.image)
-            textDescription.text = dailyForecast.description
-            textTemperature.text = formatTempForDisplay(dailyForecast.temp,tempDisplaySettingManger.getTempDisplaySettings())
+            val iconId = dailyForecast.weather[0].icon
+            image.load("http://openweathermap.org/img/wn/${iconId}@2x.png")
+            textDescription.text = dailyForecast.weather[0].description
+            textTemperature.text = formatTempForDisplay(dailyForecast.temp.max,tempDisplaySettingManger.getTempDisplaySettings())
+            tempDate.text = DATE_FORMAT.format(Date(dailyForecast.date * 1000))
             itemView.setOnClickListener {
                 onItemClickListener?.onItemClick(dailyForecast)
             }

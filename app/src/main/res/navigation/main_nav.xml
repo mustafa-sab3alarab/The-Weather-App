@@ -32,13 +32,12 @@
             app:destination="@id/locationEntryFragment"
             app:exitAnim="@android:anim/slide_out_right"
             app:popExitAnim="@android:anim/slide_out_right" />
-        <action
-            android:id="@+id/action_currentForecastFragment_to_forecastDetailsActivity"
-            app:destination="@id/forecastDetailsActivity"
-            app:enterAnim="@android:anim/slide_in_left" />
         <argument
             android:name="zipcode"
             app:argType="string" />
+        <action
+            android:id="@+id/action_currentForecastFragment_to_forecastDetailsActivity"
+            app:destination="@id/forecastDetailsActivity" />
     </fragment>
     <fragment
         android:id="@+id/locationEntryFragment"

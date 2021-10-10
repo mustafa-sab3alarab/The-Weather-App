@@ -4,6 +4,9 @@ plugins {
     id("androidx.navigation.safeargs")
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdk 31
 
@@ -15,6 +18,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String","OPEN_WEATHER_MAP_API_KEY", "\"${localProperties["OPEN_WEATHER_MAP_API_KEY"]}\"")
     }
 
     buildTypes {
@@ -47,4 +52,11 @@ dependencies {
 
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+
+
+    //Coil
+    implementation("io.coil-kt:coil:1.4.0")
+
 }
