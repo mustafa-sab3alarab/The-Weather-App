@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ad340.*
+import com.example.ad340.databinding.FragmentCurrentForecastBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CurrentForecastFragment : Fragment(){
@@ -18,24 +19,33 @@ class CurrentForecastFragment : Fragment(){
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
     private lateinit var locationRepository: LocationRepository
 
+    // View Binding
+    private var _binding: FragmentCurrentForecastBinding? = null
+    private val binding get() = _binding!!
+
+
+    companion object {
+
+        private const val KEY_ZIPCODE = "key_zipcode"
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_current_forecast, container, false)
+
+        _binding = FragmentCurrentForecastBinding.inflate(inflater,container,false)
+        val view = binding.root
+
         tempDisplaySettingManger = TempDisplaySettingManger(requireContext())
 
         val zipcode = arguments?.getString(KEY_ZIPCODE) ?: ""
 
-        val locationName = view.findViewById<TextView>(R.id.location_name)
-        val tempText = view.findViewById<TextView>(R.id.temp_text)
-        val image = view.findViewById<ImageView>(R.id.image)
-
-
-
+        // View Model
 
         viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
         viewModelForecastRepository.currentWeather.observe(viewLifecycleOwner) {
-            locationName.text = it.name
-            tempText.text = formatTempForDisplay(it.forecast.temp,tempDisplaySettingManger.getTempDisplaySettings())
+            binding.locationName.text = it.name
+            binding.tempText.text = formatTempForDisplay(it.forecast.temp,tempDisplaySettingManger.getTempDisplaySettings())
         }
 
         viewModelForecastRepository.loadCurrentForecast(zipcode)
@@ -55,21 +65,9 @@ class CurrentForecastFragment : Fragment(){
         return view
     }
 
-
-    companion object {
-
-        const val KEY_ZIPCODE = "key_zipcode"
-
-        fun newInstance(zipcode: String): CurrentForecastFragment {
-            val fragment = CurrentForecastFragment()
-
-            val args = Bundle()
-            args.putString(KEY_ZIPCODE, zipcode)
-            fragment.arguments = args
-
-            return fragment
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
 
 }

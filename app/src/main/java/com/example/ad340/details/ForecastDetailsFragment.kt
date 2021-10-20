@@ -21,6 +21,7 @@ class ForecastDetailsFragment : Fragment() {
     private lateinit var tempDisplaySettingManger : TempDisplaySettingManger
     private val args : ForecastDetailsFragmentArgs by navArgs()
 
+    // View Binding
     private var _binding: FragmentForecastDetailsBinding? = null
     private val binding get() = _binding!!
 

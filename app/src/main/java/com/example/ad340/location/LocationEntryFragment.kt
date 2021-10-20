@@ -12,24 +12,24 @@ import androidx.navigation.fragment.findNavController
 import com.example.ad340.Location
 import com.example.ad340.LocationRepository
 import com.example.ad340.R
+import com.example.ad340.databinding.FragmentLocationEntryBinding
 
 class LocationEntryFragment : Fragment() {
+
     private lateinit var locationRepository: LocationRepository
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_location_entry, container, false)
+    // View Binding
+    private var _binding : FragmentLocationEntryBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        _binding = FragmentLocationEntryBinding.inflate(inflater,container,false)
+        val view = binding.root
         locationRepository = LocationRepository(requireContext())
 
-
-        val zipcodeEditText = view.findViewById<EditText>(R.id.zipcodeEditText)
-        val enterButton = view.findViewById<Button>(R.id.enterButton)
-
-        enterButton.setOnClickListener {
-            val zipcode = zipcodeEditText.text.toString()
+        binding.enterButton.setOnClickListener {
+            val zipcode = binding.zipcodeEditText.text.toString()
             if (zipcode.length != 5) {
                 Toast.makeText(view.context, R.string.zipcode_entry_error, Toast.LENGTH_SHORT)
                     .show()
@@ -40,6 +40,11 @@ class LocationEntryFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

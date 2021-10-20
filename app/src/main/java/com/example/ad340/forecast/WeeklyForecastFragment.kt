@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ad340.*
 import com.example.ad340.api.DailyForecast
+import com.example.ad340.databinding.FragmentWeeklyForecastBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WeeklyForecastFragment : Fragment(), OnItemClickListener {
@@ -20,9 +21,23 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
     private lateinit var locationRepository: LocationRepository
 
 
+    // View Binding
+    private var _binding : FragmentWeeklyForecastBinding? = null
+    private val binding get() = _binding!!
+
+
+    companion object {
+
+        const val KEY_ZIPCODE = "key_zipcode"
+
+    }
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_weekly_forecast, container, false)
+        _binding = FragmentWeeklyForecastBinding.inflate(inflater,container,false)
+        val view = binding.root
+
         tempDisplaySettingManger = TempDisplaySettingManger(requireContext())
 
 
@@ -31,6 +46,8 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
         val forecastList = view.findViewById<RecyclerView>(R.id.forecastWeeklyList)
         forecastList.layoutManager = LinearLayoutManager(requireContext())
 
+
+        // View Model
         viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
         viewModelForecastRepository.weeklyForecast.observe(viewLifecycleOwner) {
             // update our list adapter
@@ -73,20 +90,9 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
         findNavController().navigate(action)
     }
 
-    companion object {
-
-        const val KEY_ZIPCODE = "key_zipcode"
-
-        fun newInstance(zipcode: String): WeeklyForecastFragment {
-            val fragment = WeeklyForecastFragment()
-
-            val args = Bundle()
-            args.putString(KEY_ZIPCODE, zipcode)
-            fragment.arguments = args
-
-            return fragment
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
 
 }
