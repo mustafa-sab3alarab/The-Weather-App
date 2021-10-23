@@ -50,6 +50,10 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
         // View Model
         viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
         viewModelForecastRepository.weeklyForecast.observe(viewLifecycleOwner) {
+
+            binding.textMessage.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
+
             // update our list adapter
             val recyclerViewAdapter = DailyForecastAdapter(it.daily, tempDisplaySettingManger)
             forecastList.adapter = recyclerViewAdapter
@@ -67,7 +71,10 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
         locationRepository = LocationRepository(requireContext())
         locationRepository.savedLocation.observe(viewLifecycleOwner) { savedLocation ->
             when (savedLocation) {
-                is Location.Zipcode -> viewModelForecastRepository.loadWeeklyForecast(savedLocation.zipcode)
+                is Location.Zipcode -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    viewModelForecastRepository.loadWeeklyForecast(savedLocation.zipcode)
+                }
             }
         }
 

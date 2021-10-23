@@ -46,6 +46,7 @@ class CurrentForecastFragment : Fragment(){
 
             // Text visibility
             binding.textMessage.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
             binding.locationName.visibility = View.VISIBLE
             binding.tempText.visibility = View.VISIBLE
 
@@ -65,7 +66,10 @@ class CurrentForecastFragment : Fragment(){
         locationRepository = LocationRepository(requireContext())
         locationRepository.savedLocation.observe(viewLifecycleOwner){savedLocation  ->
             when(savedLocation){
-                is Location.Zipcode -> viewModelForecastRepository.loadCurrentForecast(savedLocation.zipcode)
+                is Location.Zipcode -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    viewModelForecastRepository.loadCurrentForecast(savedLocation.zipcode)
+                }
             }
         }
         return view
