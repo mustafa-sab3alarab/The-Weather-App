@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.ad340.TempDisplaySettingManger
@@ -13,13 +14,13 @@ import com.example.ad340.formatTempForDisplay
 import java.text.SimpleDateFormat
 import java.util.*
 
-private val DATE_FORMAT = SimpleDateFormat("dd-MM-yyyy")
 
 class ForecastDetailsFragment : Fragment() {
 
 
     private lateinit var tempDisplaySettingManger : TempDisplaySettingManger
     private val args : ForecastDetailsFragmentArgs by navArgs()
+    private lateinit var viewModel: ForecastDetailsViewModel
 
     // View Binding
     private var _binding: FragmentForecastDetailsBinding? = null
@@ -31,12 +32,6 @@ class ForecastDetailsFragment : Fragment() {
 
         tempDisplaySettingManger = TempDisplaySettingManger(requireContext())
 
-        binding.tempDetails.text = formatTempForDisplay(args.temp,tempDisplaySettingManger.getTempDisplaySettings())
-        binding.tempDescriptionDetails.text = args.description
-        binding.dateDetails.text = DATE_FORMAT.format(Date(args.date * 1000))
-        binding.iconTempDetails.load("http://openweathermap.org/img/wn/${args.image}@2x.png")
-
-
         return view
     }
 
@@ -45,6 +40,16 @@ class ForecastDetailsFragment : Fragment() {
         _binding = null
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this,ForecastDetailsFragmentFactory(args))[ForecastDetailsViewModel::class.java]
+        viewModel.viewState.observe(viewLifecycleOwner) { viewState ->
+            // Update the UI
+            binding.tempDetails.text = formatTempForDisplay(viewState.temp,tempDisplaySettingManger.getTempDisplaySettings())
+            binding.tempDescriptionDetails.text = viewState.description
+            binding.dateDetails.text = viewState.date
+            binding.iconTempDetails.load(viewState.iconUrl)
+        }
+    }
 
 }

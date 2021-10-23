@@ -41,9 +41,15 @@ class CurrentForecastFragment : Fragment(){
         val zipcode = arguments?.getString(KEY_ZIPCODE) ?: ""
 
         // View Model
-
         viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
         viewModelForecastRepository.currentWeather.observe(viewLifecycleOwner) {
+
+            // Text visibility
+            binding.textMessage.visibility = View.GONE
+            binding.locationName.visibility = View.VISIBLE
+            binding.tempText.visibility = View.VISIBLE
+
+
             binding.locationName.text = it.name
             binding.tempText.text = formatTempForDisplay(it.forecast.temp,tempDisplaySettingManger.getTempDisplaySettings())
         }
