@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CurrentForecastFragment : Fragment(){
 
-    private lateinit var forecastRepository : ForecastRepository
+    private var forecastRepository = ForecastRepository()
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
     private lateinit var locationRepository: LocationRepository
 
@@ -40,7 +40,6 @@ class CurrentForecastFragment : Fragment(){
 
         val zipcode = arguments?.getString(KEY_ZIPCODE) ?: ""
 
-        // View Model
 
         forecastRepository.currentWeather.observe(viewLifecycleOwner) {
 

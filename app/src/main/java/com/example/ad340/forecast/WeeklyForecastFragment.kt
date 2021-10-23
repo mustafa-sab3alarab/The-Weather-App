@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WeeklyForecastFragment : Fragment(), OnItemClickListener {
 
-    private lateinit var forecastRepository : ForecastRepository
+    private var forecastRepository = ForecastRepository()
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
     private lateinit var locationRepository: LocationRepository
 
@@ -47,7 +47,7 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
         forecastList.layoutManager = LinearLayoutManager(requireContext())
 
 
-        // View Model
+
         forecastRepository.weeklyForecast.observe(viewLifecycleOwner) {
 
             binding.textMessage.visibility = View.GONE
