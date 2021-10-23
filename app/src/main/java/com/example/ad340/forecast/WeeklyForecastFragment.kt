@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WeeklyForecastFragment : Fragment(), OnItemClickListener {
 
-    private lateinit var viewModelForecastRepository : ForecastRepository
+    private lateinit var forecastRepository : ForecastRepository
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
     private lateinit var locationRepository: LocationRepository
 
@@ -48,8 +48,7 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
 
 
         // View Model
-        viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
-        viewModelForecastRepository.weeklyForecast.observe(viewLifecycleOwner) {
+        forecastRepository.weeklyForecast.observe(viewLifecycleOwner) {
 
             binding.textMessage.visibility = View.GONE
             binding.progressBar.visibility = View.GONE
@@ -60,7 +59,7 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
             recyclerViewAdapter.onItemClickListener = this
         }
 
-        viewModelForecastRepository.loadWeeklyForecast(zipcode)
+        forecastRepository.loadWeeklyForecast(zipcode)
 
         val fab = view.findViewById<FloatingActionButton>(R.id.locationEntryButton)
         fab.setOnClickListener {
@@ -73,7 +72,7 @@ class WeeklyForecastFragment : Fragment(), OnItemClickListener {
             when (savedLocation) {
                 is Location.Zipcode -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    viewModelForecastRepository.loadWeeklyForecast(savedLocation.zipcode)
+                    forecastRepository.loadWeeklyForecast(savedLocation.zipcode)
                 }
             }
         }

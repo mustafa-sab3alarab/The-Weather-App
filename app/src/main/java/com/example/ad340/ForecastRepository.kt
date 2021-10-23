@@ -13,7 +13,7 @@ import retrofit2.Response
 
 
 // Repository
-class ForecastRepository: ViewModel() {
+class ForecastRepository {
 
     // Live Data
     private val _currentWeather = MutableLiveData<CurrentWeather>()

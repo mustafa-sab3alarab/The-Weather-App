@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CurrentForecastFragment : Fragment(){
 
-    private lateinit var viewModelForecastRepository : ForecastRepository
+    private lateinit var forecastRepository : ForecastRepository
     private lateinit var tempDisplaySettingManger: TempDisplaySettingManger
     private lateinit var locationRepository: LocationRepository
 
@@ -41,8 +41,8 @@ class CurrentForecastFragment : Fragment(){
         val zipcode = arguments?.getString(KEY_ZIPCODE) ?: ""
 
         // View Model
-        viewModelForecastRepository = ViewModelProvider(this)[ForecastRepository::class.java]
-        viewModelForecastRepository.currentWeather.observe(viewLifecycleOwner) {
+
+        forecastRepository.currentWeather.observe(viewLifecycleOwner) {
 
             // Text visibility
             binding.textMessage.visibility = View.GONE
@@ -55,7 +55,7 @@ class CurrentForecastFragment : Fragment(){
             binding.tempText.text = formatTempForDisplay(it.forecast.temp,tempDisplaySettingManger.getTempDisplaySettings())
         }
 
-        viewModelForecastRepository.loadCurrentForecast(zipcode)
+        forecastRepository.loadCurrentForecast(zipcode)
 
         val fab = view.findViewById<FloatingActionButton>(R.id.locationEntryButton)
         fab.setOnClickListener {
@@ -68,7 +68,7 @@ class CurrentForecastFragment : Fragment(){
             when(savedLocation){
                 is Location.Zipcode -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    viewModelForecastRepository.loadCurrentForecast(savedLocation.zipcode)
+                    forecastRepository.loadCurrentForecast(savedLocation.zipcode)
                 }
             }
         }
